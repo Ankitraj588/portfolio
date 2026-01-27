@@ -22,7 +22,7 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background-image: url('/myfinal.png');
+  background-image: url('./myfinal.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 45%;
