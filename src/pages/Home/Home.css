@@ -1,0 +1,353 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap");
+
+@font-face {
+  font-family: "Arkhip";
+  src: url("/Arkhip_font.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.home {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Image layer */
+.hero-image-layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-image: url('myfinal.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 45%;
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Responsive background size */
+@media (max-width: 1024px) {
+  .hero-image-layer {
+    background-size: 55%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-image-layer {
+    background-size: 70%;
+    background-position: center top 20%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image-layer {
+    background-size: 85%;
+    opacity: 0.6;
+  }
+}
+
+.hero-footer {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 4rem;
+  right: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  z-index: 2;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .hero-footer {
+    left: 2.5rem;
+    right: 2.5rem;
+    bottom: 2rem;
+  }
+}
+
+/* Mobile: Stack vertically */
+@media (max-width: 768px) {
+  .hero-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-footer {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    gap: 2rem;
+  }
+}
+
+/* LEFT — NAME */
+.hey {
+  padding-left: 20px;
+  font-family: "Arkhip", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  color: var(--accent-primary);
+  letter-spacing: 0.11em;
+}
+
+@media (max-width: 768px) {
+  .hey {
+    padding-left: 10px;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hey {
+    padding-left: 5px;
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+}
+
+.hero-name {
+  font-family: "Arkhip", sans-serif;
+  font-size: clamp(4rem, 11vw, 8.8rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.19em;
+  line-height: 0.99;
+  color: var(--text-primary);
+  opacity: 0.75;
+  transform-origin: left bottom;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+@media (max-width: 1024px) {
+  .hero-name {
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    letter-spacing: 0.15em;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-name {
+    font-size: clamp(3rem, 12vw, 5rem);
+    letter-spacing: 0.12em;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: clamp(2.5rem, 14vw, 4rem);
+    letter-spacing: 0.1em;
+  }
+}
+
+.hero-meta {
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 768px) {
+  .hero-meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-meta {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+}
+
+.hero-btn {
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid var(--border-primary);
+  background: transparent;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.hero-btn:hover {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+.hero-btn.secondary {
+  color: var(--text-secondary);
+  border-color: var(--border-secondary);
+}
+
+@media (max-width: 768px) {
+  .hero-btn {
+    font-size: 0.7rem;
+    padding: 0.55rem 1rem;
+    letter-spacing: 0.18em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-btn {
+    font-size: 0.65rem;
+    padding: 0.5rem 0.9rem;
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+.social-icons {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .social-icons {
+    padding-top: 15px;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons {
+    padding-top: 12px;
+    gap: 15px;
+  }
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--bg-secondary);
+  color: var(--accent-primary);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  border: 2px solid var(--border-primary);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.icon-link:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--accent-hover);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-primary);
+}
+
+.icon-link:active {
+  background-color: var(--bg-tertiary);
+  color: var(--accent-active);
+  transform: translateY(-1px);
+}
+
+.icon-link svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 768px) {
+  .icon-link {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .icon-link svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .icon-link {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .icon-link svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Focus state for accessibility */
+.icon-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-focus);
+}
+
+/* Additional utility classes for responsive layout */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-70 {
+  gap: 70px;
+}
+
+@media (max-width: 768px) {
+  .gap-70 {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gap-70 {
+    gap: 25px;
+  }
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+/* Ensure right column content is properly sized on mobile */
+@media (max-width: 768px) {
+  .hero-footer > div:last-child {
+    width: 100%;
+  }
+}

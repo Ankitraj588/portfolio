@@ -1,0 +1,390 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+@font-face {
+  font-family: "Arkhip";
+  src: url("/Arkhip_font.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.notfound {
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glitch background effect */
+.notfound-background {
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      var(--border-primary) 2px,
+      var(--border-primary) 3px
+    );
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating geometric shapes */
+.notfound-shape {
+  position: absolute;
+  border: 2px solid var(--border-primary);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shape-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  left: 5%;
+  transform: rotate(15deg);
+  animation: float 20s ease-in-out infinite;
+}
+
+.shape-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 15%;
+  right: 10%;
+  border-radius: 50%;
+  animation: float 15s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+  width: 150px;
+  height: 150px;
+  top: 40%;
+  right: 20%;
+  transform: rotate(-25deg);
+  animation: float 18s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(15deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(25deg);
+  }
+}
+
+/* Content container */
+.notfound-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+/* 404 Number */
+.notfound-code {
+  font-family: "Arkhip", sans-serif;
+  font-size: clamp(8rem, 20vw, 18rem);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  opacity: 0.85;
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+  
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+/* Glitch effect on hover */
+.notfound-code::before,
+.notfound-code::after {
+  content: '404';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.notfound-code:hover::before {
+  color: var(--accent-primary);
+  animation: glitch-1 0.3s infinite;
+  opacity: 0.8;
+}
+
+.notfound-code:hover::after {
+  color: var(--accent-primary);
+  animation: glitch-2 0.3s infinite;
+  opacity: 0.8;
+}
+
+@keyframes glitch-1 {
+  0%, 100% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(-3px, 2px);
+  }
+  66% {
+    transform: translate(3px, -2px);
+  }
+}
+
+@keyframes glitch-2 {
+  0%, 100% {
+    transform: translate(0);
+  }
+  33% {
+    transform: translate(2px, -3px);
+  }
+  66% {
+    transform: translate(-2px, 3px);
+  }
+}
+
+/* Error message */
+.notfound-title {
+  font-family: "Arkhip", sans-serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-primary);
+  margin: 1.5rem 0 1rem;
+  line-height: 1.2;
+}
+
+.notfound-message {
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin: 0 0 3rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Buttons container */
+.notfound-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+.notfound-btn {
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.8rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-primary);
+  text-decoration: none;
+  border: 1px solid var(--border-primary);
+  background: transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.notfound-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--text-primary);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.notfound-btn:hover::before {
+  left: 0;
+}
+
+
+.notfound-btn:active {
+  transform: translateY(0);
+}
+
+.notfound-btn.secondary {
+  color: var(--text-secondary);
+  border-color: var(--border-secondary);
+}
+
+.notfound-btn:hover ,.notfound-btn.secondary:hover {
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Decorative lines */
+.notfound-line {
+  width: 100%;
+  max-width: 400px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-primary),
+    transparent
+  );
+  margin: 2rem auto;
+  opacity: 0.3;
+}
+
+/* Error details (optional debug info) */
+.notfound-details {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  font-family: "Inter", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.notfound-details:hover {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .notfound-content {
+    padding: 1.5rem;
+  }
+
+  .notfound-code {
+    font-size: clamp(6rem, 18vw, 12rem);
+    letter-spacing: 0.12em;
+  }
+
+  .notfound-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: 0.15em;
+    margin: 1rem 0 0.8rem;
+  }
+
+  .notfound-message {
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    margin-bottom: 2rem;
+    letter-spacing: 0.12em;
+  }
+
+  .notfound-actions {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .notfound-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+  }
+
+  .shape-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .shape-2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .shape-3 {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .notfound-content {
+    padding: 1rem;
+  }
+
+  .notfound-code {
+    font-size: clamp(5rem, 20vw, 10rem);
+    letter-spacing: 0.1em;
+  }
+
+  .notfound-title {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+    letter-spacing: 0.12em;
+  }
+
+  .notfound-message {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    padding: 0 1rem;
+  }
+
+  .notfound-btn {
+    font-size: 0.7rem;
+    padding: 0.7rem 1.3rem;
+    letter-spacing: 0.2em;
+  }
+
+  .notfound-details {
+    font-size: 0.7rem;
+    padding: 1rem;
+  }
+}
+
+/* Animation entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notfound-code {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.notfound-title {
+  animation: fadeInUp 0.6s ease-out 0.1s backwards;
+}
+
+.notfound-message {
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+.notfound-actions {
+  animation: fadeInUp 0.6s ease-out 0.3s backwards;
+}

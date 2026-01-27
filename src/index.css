@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
+/* ===================================
+   LIGHT THEME
+   =================================== */
+
+:root {
+  --bg-primary: #fbf1c7;
+  --bg-secondary: #ebdbb2;
+  --bg-tertiary: #d5c4a1;
+  --bg-elevated: #f9f5d7;
+
+  --text-primary: #3c3836;
+  --text-secondary: #504945;
+  --text-tertiary: #665c54;
+  --text-disabled: #7c6f64;
+
+  --accent-primary: #076678;
+  --accent-secondary: #689d6a;
+  --accent-gradient-start: #076678;
+  --accent-gradient-end: #689d6a;
+
+  --accent-hover: #458588;
+  --accent-active: #427b58;
+  --accent-focus: #07667844;
+
+  --border-primary: #d5c4a1;
+  --border-secondary: #ebdbb2;
+
+  --link-default: #076678;
+  --link-visited: #8f3f71;
+  --link-hover: #458588;
+  --link-active: #427b58;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.12);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.15);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.2);
+  --shadow-glow: none;
+  --shadow-glow-hover: none;
+
+  --selection-bg: #07667855;
+  --selection-text: #fbf1c7;
+
+  --code-bg: #f2e5bc;
+  --code-text: #3c3836;
+  --code-comment: #928374;
+  --code-keyword: #9d0006;
+  --code-string: #79740e;
+  --code-function: #b57614;
+}
+
+/* ===================================
+   DARK THEME
+   =================================== */
+[data-theme="dark"] {
+  /* ===== BACKGROUND COLORS ===== */
+  --bg-primary: #282828;
+  --bg-secondary: #3c3836;
+  --bg-tertiary: #504945;
+  --bg-elevated: #3c3836;
+
+  /* ===== TEXT COLORS ===== */
+  --text-primary: #ebdbb2;
+  --text-secondary: #d5c4a1;
+  --text-tertiary: #bdae93;
+  --text-disabled: #928374;
+
+  /* ===== ACCENT COLORS ===== */
+  --accent-primary: #83a598;   /* aqua */
+  --accent-secondary: #8ec07c; /* green */
+  --accent-gradient-start: #83a598;
+  --accent-gradient-end: #8ec07c;
+
+  /* ===== INTERACTIVE STATES ===== */
+  --accent-hover: #a3be8c;
+  --accent-active: #689d6a;
+  --accent-focus: #83a59855;
+
+  /* ===== STATUS COLORS ===== */
+  --success: #8ec07c;
+  --warning: #fabd2f;
+  --error: #fb4934;
+  --info: #83a598;
+
+  /* ===== BORDER & DIVIDER ===== */
+  --border-primary: #504945;
+  --border-secondary: #3c3836;
+  --border-accent: #83a59833;
+
+  /* ===== LINK COLORS ===== */
+  --link-default: #83a598;
+  --link-visited:#ebdbb2;
+  /* --link-visited: #ffffff; */
+  --link-hover: #8ec07c;
+  --link-active: #689d6a;
+
+  /* ===== SHADOWS (very subtle, no glow) ===== */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.35);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.45);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.55);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.65);
+  --shadow-glow: none;
+  --shadow-glow-hover: none;
+
+  /* ===== OVERLAYS ===== */
+  --overlay-light: rgba(40, 40, 40, 0.7);
+  --overlay-medium: rgba(40, 40, 40, 0.85);
+  --overlay-heavy: rgba(40, 40, 40, 0.95);
+
+  /* ===== SELECTION ===== */
+  --selection-bg: #83a59866;
+  --selection-text: #ebdbb2;
+
+  /* ===== CODE BLOCKS ===== */
+  --code-bg: #1d2021;
+  --code-text: #ebdbb2;
+  --code-comment: #928374;
+  --code-keyword: #fb4934;
+  --code-string: #b8bb26;
+  --code-function: #fabd2f;
+}
+
+/* ===================================
+   GLOBAL STYLES
+   =================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  line-height: 1.6;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* position: absolute; */
+  /* inset: 0;
+    overflow: hidden;
+  background-image: url('myfinal.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 45%;
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none; */
+
+}
