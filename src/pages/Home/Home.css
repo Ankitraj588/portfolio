@@ -161,6 +161,27 @@
   color: var(--text-tertiary);
 }
 
+.a {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+    /* border:2px solid white; */
+}
+.aa{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap:250px;
+  padding: 0 2px;
+}
+.meta-space{
+    display: flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .hero-meta {
     font-size: 0.75rem;
@@ -221,10 +242,11 @@
 }
 
 .social-icons {
+  /* border: 2px solid red; */
   padding-top: 20px;
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 20px;
   justify-content: center;
 }
 

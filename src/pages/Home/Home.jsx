@@ -1,6 +1,6 @@
 import React from 'react'
 import './Home.css'
-
+import { NavLink } from "react-router-dom";
 
 
 const Home = () => {
@@ -11,13 +11,13 @@ const Home = () => {
   // }, []);
 
   return (
-    <div className=" ">
+    <div >
 
       {/* HERO IMAGE LAYER */}
       <div className="hero-image-layer" />
 
         {/* PAGE CONTENT */}
-  <div class="hero-footer">
+  <div className="hero-footer ">
 
     <div className="flex flex-col flex-wrap">
 
@@ -28,16 +28,20 @@ const Home = () => {
         <div class="hero-name">ANKIT <br/>
           RAJ</div>
       </div>
-             <div className="flex flex-col flex-wrap gap-70 justify-between">
+             <div className="aa">
             
-            <div  className="flex flex-col gap-2 ">
+            <div  className="a">
 
           <a href="/resume.pdf" className="hero-btn" target="_blank" rel="noreferrer">
                 Resume
                 </a>
-                <a href="/contact" className="hero-btn secondary">
+
+                  <NavLink
+               to="/contact"
+                className="hero-btn secondary">
                 Get in touch
-                  </a>
+                </NavLink>
+
 
 
               <div class="social-icons">
@@ -61,7 +65,7 @@ const Home = () => {
 
             </div>
 
-                    <div className="flex flex-col gap-2  ">
+                    <div className="meta-space">
                             <div className="hero-meta">Software Engineer · Builder</div>
                             <div className="hero-meta">Full Stack . Developer</div>
                 
@@ -74,8 +78,6 @@ const Home = () => {
           
   
 
-
-    // </div>
   )
 }
 

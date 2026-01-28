@@ -14,7 +14,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    < div className='flex flex-col gap-5 h-screen ' >
+    < div className='flex flex-col  h-screen ' >
   
  <Navbar />
 
