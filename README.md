@@ -8,7 +8,7 @@
   
   **A modern, responsive portfolio showcasing my projects and skills**
   
-  [View Live Demo](https://github.com/Ankitraj588/portfolio/settings/pages) • [Report Bug](#) • [Request Feature](#)
+  [View Live Demo](hhttps://ankitraj588.github.io/portfolio/) • [Report Bug](#) • [Request Feature](#)
   
 </div>
 
