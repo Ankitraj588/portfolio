@@ -99,6 +99,19 @@ const Navbar = () => {
     ABOUT
   </NavLink>
 
+  <div className="nav-separator">/</div>
+
+<NavLink
+  to="/blog"
+  className={({ isActive }) =>
+    isActive ? "nav-link nav-active" : "nav-link"
+  }
+>
+  BLOGS
+</NavLink>
+
+<div className="nav-separator"></div>
+
 </div>
 
 
