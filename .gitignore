@@ -21,3 +21,5 @@ backend/**/*.pyd
 # IDE
 .vscode/
 .idea/
+.vercel
+.env*
