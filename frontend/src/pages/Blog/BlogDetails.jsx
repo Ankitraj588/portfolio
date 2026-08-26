@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { useState } from 'react'
 
 import {
   ArrowLeft,
@@ -12,27 +12,64 @@ import {
   Calendar
 } from 'lucide-react'
 
-import { blogs } from '../../data/blogs'
+import { API_BASE_URL } from '../../api/config'
 import './BlogDetails.css'
 
-
 function BlogDetails() {
-
   const { id } = useParams()
 
-  const blog = blogs.find(
-    (blog) => blog.id === Number(id)
-  )
+  const [blog, setBlog] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
+  const [liked, setLiked] = useState(false)
+  const [bookmarked, setBookmarked] = useState(false)
+  const [likeCount, setLikeCount] = useState(0)
 
-  /* =========================================
-     BLOG NOT FOUND
-     ========================================= */
+  const [commentText, setCommentText] = useState('')
+  const [commentList, setCommentList] = useState([])
 
-  if (!blog) {
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        setLoading(true)
+        setError('')
+
+        const response = await fetch(
+          `${API_BASE_URL}/api/posts/${id}/`
+        )
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch blog: ${response.status}`)
+        }
+
+        const data = await response.json()
+
+        setBlog(data)
+        setLikeCount(data.likes || 0)
+        setCommentList(data.comments || [])
+      } catch (error) {
+        console.error('Error fetching blog:', error)
+        setError('Unable to load this blog.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchBlog()
+  }, [id])
+
+  if (loading) {
     return (
       <main className="blog-details-page">
+        <h1>Loading...</h1>
+      </main>
+    )
+  }
 
+  if (error || !blog) {
+    return (
+      <main className="blog-details-page">
         <h1>Blog Not Found</h1>
 
         <Link
@@ -42,68 +79,26 @@ function BlogDetails() {
           <ArrowLeft size={18} />
           Back to Blogs
         </Link>
-
       </main>
     )
   }
 
+  const handleLike = () => {
+    setLiked(!liked)
 
-  /* =========================================
-     LIKE
-     ========================================= */
-
-  const [liked, setLiked] = useState(false)
-
-  const [likeCount, setLikeCount] = useState(
-    blog.likes
-  )
-
-
-  /* =========================================
-     BOOKMARK
-     ========================================= */
-
-  const [bookmarked, setBookmarked] = useState(false)
-
-
-  /* =========================================
-     COMMENTS
-     ========================================= */
-
-  const [commentText, setCommentText] = useState('')
-
-  const [commentList, setCommentList] = useState([
-    {
-      id: 1,
-      username: 'Rahul',
-      text: 'Great explanation!',
-      time: '2 hours ago',
-    },
-
-    {
-      id: 2,
-      username: 'Priya',
-      text: 'This made Dijkstra much easier to understand.',
-      time: '5 hours ago',
-    },
-  ])
-
-
-  /* =========================================
-     POST COMMENT
-     ========================================= */
+    setLikeCount(
+      liked ? likeCount - 1 : likeCount + 1
+    )
+  }
 
   const handleComment = () => {
-
-    if (!commentText.trim()) {
-      return
-    }
+    if (!commentText.trim()) return
 
     const newComment = {
       id: Date.now(),
-      username: 'Ankit Raj',
+      username: 'You',
       text: commentText,
-      time: 'Just now',
+      time: 'Just now'
     }
 
     setCommentList([
@@ -114,50 +109,26 @@ function BlogDetails() {
     setCommentText('')
   }
 
-
-  /* =========================================
-     RENDER
-     ========================================= */
-
   return (
-
     <main className="blog-details-page">
-
-
-      {/* Back */}
 
       <Link
         to="/blog"
         className="back-blog-btn"
       >
-
         <ArrowLeft size={18} />
-
         Back to Blogs
-
       </Link>
 
-
-      {/* Article */}
-
       <article className="blog-article">
-
-
-        {/* Category */}
 
         <div className="article-category">
           #{blog.category}
         </div>
 
-
-        {/* Title */}
-
         <h1 className="article-title">
           {blog.title}
         </h1>
-
-
-        {/* Meta */}
 
         <div className="article-meta">
 
@@ -178,9 +149,6 @@ function BlogDetails() {
 
         </div>
 
-
-        {/* Stats */}
-
         <div className="article-stats">
 
           <span>
@@ -200,64 +168,34 @@ function BlogDetails() {
 
         </div>
 
-
-        {/* Content */}
-
         <div className="article-content">
 
           {blog.content
-            .trim()
+            ?.trim()
             .split('\n\n')
             .map((paragraph, index) => (
-
               <p key={index}>
                 {paragraph.trim()}
               </p>
-
             ))}
 
         </div>
 
-
-        {/* Actions */}
-
         <div className="article-actions">
-
-
-          {/* Like */}
 
           <button
             className={`article-action-btn ${
               liked ? 'liked' : ''
             }`}
-            onClick={() => {
-
-              setLiked(!liked)
-
-              setLikeCount(
-                liked
-                  ? likeCount - 1
-                  : likeCount + 1
-              )
-
-            }}
+            onClick={handleLike}
           >
-
             <Heart
               size={19}
-              fill={
-                liked
-                  ? 'currentColor'
-                  : 'none'
-              }
+              fill={liked ? 'currentColor' : 'none'}
             />
 
             {liked ? 'Liked' : 'Like'} {likeCount}
-
           </button>
-
-
-          {/* Bookmark */}
 
           <button
             className={`article-action-btn ${
@@ -267,7 +205,6 @@ function BlogDetails() {
               setBookmarked(!bookmarked)
             }
           >
-
             <Bookmark
               size={19}
               fill={
@@ -277,31 +214,17 @@ function BlogDetails() {
               }
             />
 
-            {bookmarked
-              ? 'Saved'
-              : 'Bookmark'}
-
+            {bookmarked ? 'Saved' : 'Bookmark'}
           </button>
-
 
         </div>
 
-
-        {/* Comments */}
-
         <section className="comments-section">
 
-
           <h2>
-
             <MessageCircle size={22} />
-
             Comments ({commentList.length})
-
           </h2>
-
-
-          {/* Comment Input */}
 
           <div className="comment-box">
 
@@ -314,21 +237,15 @@ function BlogDetails() {
               }
             />
 
-            <button
-              onClick={handleComment}
-            >
+            <button onClick={handleComment}>
               Post Comment
             </button>
 
           </div>
 
-
-          {/* Comment List */}
-
           <div className="comment-list">
 
             {commentList.map((comment) => (
-
               <div
                 className="comment"
                 key={comment.id}
@@ -337,46 +254,31 @@ function BlogDetails() {
                 <div className="comment-header">
 
                   <span className="comment-user">
-
                     <User size={16} />
-
                     {comment.username}
-
                   </span>
 
-
                   <span className="comment-time">
-
                     {comment.time}
-
                   </span>
 
                 </div>
 
-
                 <p className="comment-text">
-
                   {comment.text}
-
                 </p>
 
               </div>
-
             ))}
 
           </div>
 
-
         </section>
-
 
       </article>
 
-
     </main>
-
   )
 }
-
 
 export default BlogDetails
