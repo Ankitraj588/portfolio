@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import BlogCard from './BlogCard/BlogCard'
 import { API_BASE_URL } from '../../api/config'
 import './Blog.css'
 
 function Blog() {
+  const { user, logout } = useAuth()
+
   const [blogs, setBlogs] = useState([])
   const [search, setSearch] = useState('')
   const [activeCategory, setActiveCategory] = useState('All')
@@ -18,10 +22,14 @@ function Blog() {
         setLoading(true)
         setError('')
 
-        const response = await fetch(`${API_BASE_URL}/api/posts/`)
+        const response = await fetch(
+          `${API_BASE_URL}/api/posts/`
+        )
 
         if (!response.ok) {
-          throw new Error(`Failed to fetch blogs: ${response.status}`)
+          throw new Error(
+            `Failed to fetch blogs: ${response.status}`
+          )
         }
 
         const data = await response.json()
@@ -58,64 +66,135 @@ function Blog() {
   return (
     <main className="blog-section">
 
-      {/* Blog Header */}
+      {/* =========================
+          BLOG HEADER
+          ========================= */}
       <section className="blog-top">
 
+        {/* Left side */}
         <div className="blog-heading">
-          <h1 className="blog-main-title">Blog</h1>
+
+          <h1 className="blog-main-title">
+            Blog
+          </h1>
 
           <span className="blog-subtitle">
             Share. Learn. Build.
           </span>
+
         </div>
 
+
+        {/* Right side */}
         <div className="blog-controls">
+
+          {/* Authentication */}
+          <div className="blog-auth-links">
+
+            {user ? (
+              <>
+                <span className="blog-user">
+                  Hi, {user.username}
+                </span>
+
+                <button
+                  type="button"
+                  onClick={logout}
+                  className="blog-auth-btn"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="blog-auth-link"
+                >
+                  Login
+                </Link>
+
+                <span className="auth-divider">
+                  |
+                </span>
+
+                <Link
+                  to="/register"
+                  className="blog-auth-link"
+                >
+                  Register
+                </Link>
+              </>
+            )}
+
+          </div>
+
 
           {/* Search */}
           <div className="blog-search">
+
             <input
               type="text"
               placeholder="Search blogs..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
+
           </div>
+
 
           {/* Categories */}
           <div className="blog-categories">
+
             {categories.map((category) => (
               <button
                 key={category}
                 className={`category-btn ${
-                  activeCategory === category ? 'active' : ''
+                  activeCategory === category
+                    ? 'active'
+                    : ''
                 }`}
-                onClick={() => setActiveCategory(category)}
+                onClick={() =>
+                  setActiveCategory(category)
+                }
               >
                 #{category}
               </button>
             ))}
+
           </div>
 
         </div>
+
       </section>
 
-      {/* Loading */}
+
+      {/* =========================
+          LOADING
+          ========================= */}
       {loading && (
         <div className="no-blogs">
           <p>Loading blogs...</p>
         </div>
       )}
 
-      {/* Error */}
+
+      {/* =========================
+          ERROR
+          ========================= */}
       {!loading && error && (
         <div className="no-blogs">
           <p>{error}</p>
         </div>
       )}
 
-      {/* Content */}
+
+      {/* =========================
+          BLOG CONTENT
+          ========================= */}
       {!loading && !error && (
         <>
+
           {/* Trending */}
           <section className="trending-section">
 
@@ -124,15 +203,18 @@ function Blog() {
             </h2>
 
             <div className="blog-grid">
+
               {trendingBlogs.map((blog) => (
                 <BlogCard
                   key={blog.id}
                   blog={blog}
                 />
               ))}
+
             </div>
 
           </section>
+
 
           {/* Latest */}
           <section className="latest-section">
@@ -142,21 +224,28 @@ function Blog() {
             </h2>
 
             {filteredBlogs.length > 0 ? (
+
               <div className="blog-grid">
+
                 {filteredBlogs.map((blog) => (
                   <BlogCard
                     key={blog.id}
                     blog={blog}
                   />
                 ))}
+
               </div>
+
             ) : (
+
               <div className="no-blogs">
                 <p>No blogs found.</p>
               </div>
+
             )}
 
           </section>
+
         </>
       )}
 

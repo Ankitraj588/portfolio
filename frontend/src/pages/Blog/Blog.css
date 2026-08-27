@@ -1,35 +1,22 @@
-/* =========================================
-   BLOG SECTION
-   ========================================= */
-
+/* BLOG SECTION */
 .blog-section {
   min-height: 100vh;
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  padding: 0px 40px;
+  padding: 0 40px;
 }
 
-
-/* =========================================
-   TOP SECTION
-   ========================================= */
-
+/* TOP SECTION */
 .blog-top {
   max-width: 1100px;
-  margin: 0px auto 4rem;
-
+  margin: 0 auto 4rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-
   gap: 3rem;
 }
 
-
-/* =========================================
-   BLOG HEADING
-   ========================================= */
-
+/* BLOG HEADING */
 .blog-heading {
   display: flex;
   align-items: baseline;
@@ -41,29 +28,23 @@
   font-size: 3rem;
   font-weight: 700;
   color: var(--text-primary);
-
   margin: 0;
-
   position: relative;
   display: inline-block;
 }
 
 .blog-main-title::after {
   content: '';
-
   position: absolute;
   bottom: -8px;
   left: 0;
-
   width: 60px;
   height: 3px;
-
   background: linear-gradient(
     90deg,
     var(--accent-primary),
     var(--accent-secondary)
   );
-
   border-radius: 2px;
 }
 
@@ -71,31 +52,20 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--text-tertiary);
-
   white-space: nowrap;
 }
 
-/* =========================================
-   RIGHT CONTROLS
-   ========================================= */
-
+/* RIGHT CONTROLS */
 .blog-controls {
   display: flex;
   flex-direction: column;
-
   align-items: flex-end;
-
   gap: 1rem;
-
   width: 100%;
   max-width: 650px;
 }
 
-
-/* =========================================
-   SEARCH
-   ========================================= */
-
+/* SEARCH */
 .blog-search {
   width: 100%;
   margin: 0;
@@ -103,20 +73,14 @@
 
 .blog-search input {
   width: 100%;
-
   padding: 0.9rem 1.2rem;
-
   border: 2px solid var(--border-primary);
   border-radius: 10px;
-
   background-color: var(--bg-elevated);
   color: var(--text-primary);
-
   font-family: inherit;
   font-size: 1rem;
-
   outline: none;
-
   transition: all 0.3s ease;
 }
 
@@ -126,64 +90,43 @@
 
 .blog-search input:focus {
   border-color: var(--accent-primary);
-
-  box-shadow:
-    0 0 0 3px var(--accent-focus);
+  box-shadow: 0 0 0 3px var(--accent-focus);
 }
 
-
-/* =========================================
-   TAGS
-   ========================================= */
-
+/* TAGS */
 .blog-categories {
   display: flex;
-
   justify-content: flex-end;
   align-items: center;
-
   gap: 0.6rem;
-
   flex-wrap: wrap;
 }
 
 .category-btn {
   border: none;
-
   background: transparent;
-
   color: var(--text-secondary);
-
   font-family: inherit;
   font-size: 0.9rem;
   font-weight: 600;
-
   cursor: pointer;
-
   padding: 0.25rem 0.4rem;
-
   transition: all 0.3s ease;
 }
 
-.category-btn:hover {
-  color: var(--accent-primary);
-
-  transform: translateY(-2px);
-}
-
+.category-btn:hover,
 .category-btn.active {
   color: var(--accent-primary);
 }
 
+.category-btn:hover {
+  transform: translateY(-2px);
+}
 
-/* =========================================
-   BLOG SECTIONS
-   ========================================= */
-
+/* BLOG SECTIONS */
 .trending-section,
 .latest-section {
   max-width: 1100px;
-
   margin: 0 auto 4rem;
 }
 
@@ -191,52 +134,30 @@
 .latest-section h2 {
   font-size: 1.8rem;
   font-weight: 700;
-
   color: var(--text-primary);
-
   margin-bottom: 1.8rem;
 }
 
-
-/* =========================================
-   BLOG GRID
-   ========================================= */
-
+/* BLOG GRID */
 .blog-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 30px;
   row-gap: 30px;
 }
 
-
-/* =========================================
-   NO BLOGS
-   ========================================= */
-
+/* NO BLOGS */
 .no-blogs {
   padding: 3rem;
-
   text-align: center;
-
   border: 2px dashed var(--border-primary);
   border-radius: 12px;
-
   background-color: var(--bg-secondary);
-
   color: var(--text-secondary);
 }
 
-
-/* =========================================
-   RESPONSIVE
-   ========================================= */
-
+/* RESPONSIVE */
 @media (max-width: 900px) {
-
   .blog-top {
     flex-direction: column;
     gap: 2rem;
@@ -255,12 +176,9 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
-
 }
 
-
 @media (max-width: 768px) {
-
   .blog-section {
     padding: 60px 20px;
   }
@@ -282,12 +200,9 @@
   .latest-section h2 {
     font-size: 1.5rem;
   }
-
 }
 
-
 @media (max-width: 480px) {
-
   .blog-section {
     padding: 50px 15px;
   }
@@ -303,5 +218,137 @@
   .category-btn {
     font-size: 0.85rem;
   }
+}
 
+
+/* =========================================
+   BLOG AUTH CONTROLS
+   ========================================= */
+
+.blog-auth-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  width: 100%;
+  margin-bottom: 0.2rem;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* Login / Register links */
+
+.blog-auth-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  padding: 0.45rem 0.75rem;
+  border-radius: 7px;
+
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.blog-auth-link:hover {
+  color: var(--accent-primary);
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
+}
+
+/* Make Register stand out */
+
+.blog-auth-link:last-child {
+  color: var(--bg-primary);
+  background: linear-gradient(
+    135deg,
+    var(--accent-primary),
+    var(--accent-secondary)
+  );
+
+  padding: 0.48rem 0.95rem;
+  border-radius: 8px;
+}
+
+.blog-auth-link:last-child:hover {
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px var(--accent-focus);
+}
+
+/* Divider */
+
+.auth-divider {
+  color: var(--text-tertiary);
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+/* =========================================
+   LOGGED-IN USER
+   ========================================= */
+.blog-user {
+  display: inline-flex;
+  align-items: center;
+
+  color: var(--text-primary);
+
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+
+  padding: 0.45rem 0.2rem;
+
+  transition: color 0.25s ease;
+}
+
+.blog-user:hover {
+  color: var(--accent-primary);
+}
+
+/* Logout */
+
+.blog-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-primary);
+  background-color: transparent;
+
+  color: var(--text-secondary);
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  padding: 0.48rem 0.8rem;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.blog-auth-btn:hover {
+  color: var(--accent-primary);
+  border-color: var(--accent-primary);
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
 }

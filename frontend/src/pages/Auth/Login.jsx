@@ -1,10 +1,14 @@
 import { API_BASE_URL } from '../../api/config'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { User, Lock, LogIn } from 'lucide-react'
 import './Auth.css'
 
 function Login() {
+
+  const navigate = useNavigate()
+  const { login } = useAuth()
 
   const [formData, setFormData] = useState({
     username: '',
@@ -44,9 +48,15 @@ function Login() {
         )
       }
 
+      console.log('Login response:', data)
+
+      // Save logged-in user in AuthContext
+      login(data.user)
+
       alert('Login successful!')
 
-      console.log('Login response:', data)
+      // Go to blog
+      navigate('/blog')
 
     } catch (error) {
       console.error('Login error:', error)
@@ -60,7 +70,6 @@ function Login() {
       <div className="auth-card">
 
         {/* Header */}
-
         <div className="auth-header">
 
           <LogIn size={32} />
@@ -77,14 +86,12 @@ function Login() {
 
 
         {/* Form */}
-
         <form
           className="auth-form"
           onSubmit={handleSubmit}
         >
 
           {/* Username */}
-
           <div className="auth-input-group">
 
             <label>
@@ -110,7 +117,6 @@ function Login() {
 
 
           {/* Password */}
-
           <div className="auth-input-group">
 
             <label>
@@ -136,7 +142,6 @@ function Login() {
 
 
           {/* Login */}
-
           <button
             type="submit"
             className="auth-submit-btn"
@@ -148,7 +153,6 @@ function Login() {
 
 
         {/* Footer */}
-
         <div className="auth-footer">
 
           <span>
