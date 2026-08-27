@@ -1,12 +1,13 @@
+import { API_BASE_URL } from '../../api/config'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Mail, Lock, LogIn } from 'lucide-react'
+import { User, Lock, LogIn } from 'lucide-react'
 import './Auth.css'
 
 function Login() {
 
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: '',
   })
 
@@ -17,10 +18,40 @@ function Login() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    console.log('Login data:', formData)
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/api/auth/login/`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: formData.username,
+            password: formData.password,
+          }),
+        }
+      )
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(
+          data.detail || 'Login failed'
+        )
+      }
+
+      alert('Login successful!')
+
+      console.log('Login response:', data)
+
+    } catch (error) {
+      console.error('Login error:', error)
+      alert(error.message)
+    }
   }
 
   return (
@@ -52,23 +83,23 @@ function Login() {
           onSubmit={handleSubmit}
         >
 
-          {/* Email */}
+          {/* Username */}
 
           <div className="auth-input-group">
 
             <label>
-              Email
+              Username
             </label>
 
             <div className="auth-input-wrapper">
 
-              <Mail size={18} />
+              <User size={18} />
 
               <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                value={formData.email}
+                type="text"
+                name="username"
+                placeholder="Enter your username"
+                value={formData.username}
                 onChange={handleChange}
                 required
               />

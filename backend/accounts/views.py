@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
@@ -53,6 +54,56 @@ def register(request):
                 }
             },
             status=201
+        )
+
+    except json.JSONDecodeError:
+        return JsonResponse(
+            {"detail": "Invalid JSON."},
+            status=400
+        )
+
+@csrf_exempt
+def login(request):
+    if request.method != "POST":
+        return JsonResponse(
+            {"detail": "Only POST method is allowed."},
+            status=405
+        )
+
+    try:
+        data = json.loads(request.body)
+
+        username = data.get("username", "").strip()
+        password = data.get("password", "")
+
+        if not username or not password:
+            return JsonResponse(
+                {"detail": "Username and password are required."},
+                status=400
+            )
+
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
+
+        if user is None:
+            return JsonResponse(
+                {"detail": "Invalid username or password."},
+                status=401
+            )
+
+        return JsonResponse(
+            {
+                "message": "Login successful.",
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "email": user.email,
+                }
+            },
+            status=200
         )
 
     except json.JSONDecodeError:
