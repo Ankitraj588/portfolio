@@ -1,3 +1,4 @@
+// ```jsx
 import React from "react";
 import Project from "./Project";
 import "./Project.css";
@@ -9,42 +10,62 @@ const Projects = () => {
       tech: [
         "devicon-python-plain",
         "devicon-flask-original",
-        "devicon-sqlite-plain",
+        "devicon-postgresql-plain",
         "devicon-html5-plain",
         "devicon-css3-plain",
         "devicon-bootstrap-plain",
       ],
       points: [
-        "Built a secure full-stack web app for SGPA/CGPA management with authentication",
-        "Implemented real-time CGPA leaderboard with branch and year filters",
-        "Designed a responsive dark-themed UI with password hashing",
+        "Built a full-stack CGPA management platform with secure authentication and student result management",
+        "Implemented a dynamic CGPA leaderboard with branch, year, and program-based filtering",
+        "Designed a responsive interface and deployed the application using Vercel with PostgreSQL (Neon)",
       ],
-      github: "https://github.com/your-repo",
-      live: "https://your-live-link.com",
+      github: "https://github.com/Ankitraj588/cgpa-leaderboard",
+      live: "https://cgpa-leaderboard-eight.vercel.app/",
     },
+
     {
-      title: "Jarvis – AI Voice Assistant",
-      tech: ["devicon-python-plain"],
-      points: [
-        "Built a voice-controlled AI assistant for music, news, weather, and Wikipedia search",
-        "Integrated external APIs like OpenWeather and NewsAPI",
-        "Implemented speech recognition and text-to-speech for interaction",
-      ],
-      github: "https://github.com/your-repo",
-    },
-    {
-      title: "Personal Portfolio Website",
+      title: "Portfolio & Blogging Platform",
       tech: [
         "devicon-react-original",
-        "devicon-tailwindcss-plain",
-        "devicon-css3-plain",
+        "devicon-python-plain",
+        "devicon-django-plain",
+        "devicon-mysql-plain",
       ],
       points: [
-        "Designed and developed a responsive personal portfolio with modern UI",
-        "Implemented reusable components and dynamic routing using React Router",
+        "Developed a full-stack portfolio and blogging platform using React and Django REST Framework",
+        "Built reusable React components with responsive UI, client-side routing, and dynamic project sections",
+        "Integrated a backend architecture for managing users, blogs, and application data with MySQL",
       ],
-      github: "https://github.com/your-repo",
-      live: "https://your-portfolio-link.com",
+      github: "https://github.com/Ankitraj588/portfolio-blogging",
+      live: "https://portfolio-blogging.vercel.app/",
+    },
+
+    {
+      title: "Jarvis – AI Voice Assistant",
+      tech: [
+        "devicon-python-plain",
+      ],
+      points: [
+        "Developed a Python-based voice assistant capable of handling music, news, weather, and Wikipedia queries",
+        "Integrated external APIs including OpenWeather and NewsAPI to provide real-time information",
+        "Implemented speech recognition and text-to-speech for interactive voice-based communication",
+      ],
+      github:
+        "https://github.com/Ankitraj588/Jarvis-Voice-Assistant-project-",
+    },
+
+    {
+      title: "Arduino Uno Robo War Car",
+      tech: [
+        "devicon-arduino-plain",
+        "devicon-cplusplus-plain",
+      ],
+      points: [
+        "Built an Arduino Uno based robotic war car with motor-driven movement and remote-controlled operation",
+        "Programmed the robot using C/C++ to control motor direction, speed, and movement logic",
+        "Integrated electronic components and motor drivers to build and test a functional combat robotics prototype",
+      ],
     },
   ];
 
@@ -76,3 +97,4 @@ const Projects = () => {
 };
 
 export default Projects;
+// ```
